@@ -6,6 +6,20 @@ on:
     types: [opened, synchronize]
 
 jobs:
+
+  confidentiliaty-test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+    # The new Added confidentiality Test
+      - name: Check Staff ID confidentiality
+        run: |
+          python scripts/check_staff_id_confidentiality.py
+
   lint-and-approve:
     runs-on: ubuntu-latest
 
@@ -22,10 +36,6 @@ jobs:
         with:
           python-version: '3.x'
       
-      # The new Added confidentiality Test
-      - name: Check Staff ID confidentiality
-        run: |
-          python scripts/check_staff_id_confidentiality.py
       
       #Linting steps
       - name: Install linter
