@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout fork repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -25,7 +27,12 @@ jobs:
 
       - name: Create or switch branch
         run: |
-          git checkout -b feature/daily-rate-update || git checkout feature/daily-rate-update
+          git fetch origin
+          if git show-ref --verify --quiet refs/heads/feature/daily-rate-update; then
+            git checkout feature/daily-rate-update
+          else
+            git checkout -b feature/daily-rate-update
+          fi
 
       - name: Run refactor script
         run: |
@@ -34,7 +41,7 @@ jobs:
       - name: Create Pull Request to upstream
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}  # replace with PAT if upstream
           base: main
           branch: feature/daily-rate-update
           commit-message: "Refactor: switch from hourly rate to daily rate"
