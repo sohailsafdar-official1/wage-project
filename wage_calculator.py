@@ -1,5 +1,6 @@
 import getpass
 
+
 class Staff:
     def __init__(self, staff_id, days_worked):
         self._staff_id = staff_id  # store privately
