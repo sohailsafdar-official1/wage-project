@@ -1,6 +1,6 @@
 class Staff:
     def __init__(self, staff_id, days_worked):
-        self.staff_id = staff_id
+#        self.staff_id = staff_id
         self.days_worked = days_worked
         self.base_wage = 50        # weekly base wage in pounds
         self.daily_rate = 10      # hourly rate in pounds
@@ -10,14 +10,14 @@ class Staff:
         return total_wage
 
     def display_details(self):
-        print(f"Staff ID: {self.staff_id}")
+#        print(f"Staff ID: {self.staff_id}")
         print(f"Hours Worked: {self.days_worked}")
         print(f"Total Wage: £{self.calculate_wage()}")
 
 
 def test_func():
     # Taking user input
-    staff_id = input("Enter Staff ID: ")
+#    staff_id = input("Enter Staff ID: ")
     hours = float(input("Enter number of days worked: "))
 
     # Create object
